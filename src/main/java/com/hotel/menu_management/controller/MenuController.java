@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +33,25 @@ public class MenuController {
 		return "item added succesfully";
 		
 	}
+	
+	@GetMapping ("/menu/all")
+	public List<MenuItem> getAllItems(){
+		return menulist;
+	}
+	
+	
+	@GetMapping("menu/{id}")
+	public MenuItem GetItemById(@PathVariable int id) {
+		
+		for(MenuItem item : menulist) {
+			if(item.getId()==id) {
+				return item;
+			}
+			
+		}
+		return null;
+		
+	}
+	
 	
 }
