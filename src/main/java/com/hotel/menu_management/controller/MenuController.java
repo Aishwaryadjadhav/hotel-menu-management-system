@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.hotel.menu_management.model.MenuItem;
-import com.hotel.menu_management.repository.MenuRepository;
+import com.hotel.menu_management.service.MenuService;
 
 @RestController
 public class MenuController {
 	
 	@Autowired
-	private MenuRepository repo;
+	private MenuService service;
 	
 	@GetMapping("/menu")
 	public String Getmenu() {
@@ -26,41 +26,31 @@ public class MenuController {
 
 	@PostMapping ("/menu/add")
 	public String addMenuItem(@RequestBody MenuItem item) {
-		repo.save(item);
-		return "item save succesfully";
+		return service.AddMenuItem(item);
+		
 	}
 	
 	@GetMapping ("/menu/all")
 	public List<MenuItem> getAllItems(){
-		return repo.findAll();
+		return service.GetAllItems();
 	}
 	
 	
 	@GetMapping("menu/{id}")
 	public MenuItem GetItemById(@PathVariable int id) {
-		return repo.findById(id).orElse(null);	
+		return service.GetItemById(id);	
 	}
 	
 	@PutMapping("/menu/update/{id}")
 	public String UpdateItem(@PathVariable int id, @RequestBody MenuItem updateditem) {
-		
-		MenuItem item = repo.findById(id).orElse(null);
-		
-			if(item != null) {
-				item.setName(updateditem.getName());
-				item.setPrice(updateditem.getPrice());
-				repo.save(item);
-				 return "Item updated successfully";
-			}
-		
-		return "Item not found";
+		return service.UpdateItem(id, updateditem);
 		
 	}
 	
 	@DeleteMapping("menu/delete/{id}")
 	public String DeleteItem(@PathVariable int id) {
-		repo.deleteById(id);
-		return "item deleted successfully";
+		return service.DeleteItem(id);
+		
 	}
 
 }
