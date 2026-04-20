@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotel.menu_management.exception.ResourceNotFoundException;
 import com.hotel.menu_management.model.MenuItem;
 import com.hotel.menu_management.repository.MenuRepository;
 
@@ -27,27 +28,41 @@ public class MenuService {
 	
 	// GET BY ID
 	public MenuItem GetItemById(int id) {
-		return repo.findById(id).orElse(null);
+		   MenuItem item = repo.findById(id).orElse(null);
+
+		    if (item == null) {
+		        throw new ResourceNotFoundException("Item not found with id " + id);
+		    }
+
+		    return item;
 		
 	}
 	
 	// UPDATE
 	public String UpdateItem(int id, MenuItem UpdatedItem) {
 		MenuItem item = repo.findById(id).orElse(null);
-		if(item != null) {
-			item.setName(UpdatedItem.getName());
-			item.setPrice(UpdatedItem.getPrice());
-			repo.save(item);
-			return " item updated successfully";
-		}
-		return "item not found";
+		  if (item == null) {
+		        throw new ResourceNotFoundException("Item not found with id " + id);
+		    }
+
+		    item.setName(UpdatedItem.getName());
+		    item.setPrice(UpdatedItem.getPrice());
+		    repo.save(item);
+
+		    return "Item updated successfully";
 		
 	}
 	
 	// DELETE
 	public String DeleteItem(int id) {
-		repo.deleteById(id);
-		return "item delete successfully";
+		   MenuItem item = repo.findById(id).orElse(null);
+
+		    if (item == null) {
+		        throw new ResourceNotFoundException("Item not found with id " + id);
+		    }
+
+		    repo.delete(item);
+		    return "Item deleted successfully";
 	}
 
 
