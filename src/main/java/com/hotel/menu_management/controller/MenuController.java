@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.hotel.menu_management.model.MenuItem;
 import com.hotel.menu_management.service.MenuService;
+import jakarta.validation.Valid;
 
 @RestController
 public class MenuController {
@@ -25,7 +26,7 @@ public class MenuController {
 	}
 
 	@PostMapping ("/menu/add")
-	public String addMenuItem(@RequestBody MenuItem item) {
+	public String addMenuItem(@Valid @RequestBody MenuItem item) {
 		return service.AddMenuItem(item);
 		
 	}
@@ -42,7 +43,7 @@ public class MenuController {
 	}
 	
 	@PutMapping("/menu/update/{id}")
-	public String UpdateItem(@PathVariable int id, @RequestBody MenuItem updateditem) {
+	public String UpdateItem(@PathVariable int id,@Valid @RequestBody MenuItem updateditem) {
 		return service.UpdateItem(id, updateditem);
 		
 	}
