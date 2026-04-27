@@ -2,7 +2,7 @@
 
 This is a backend REST API project built using Spring Boot.
 
-The project is designed to manage hotel menu items and demonstrates real backend development using REST APIs and database integration.
+The project is designed to manage hotel menu items and demonstrates real-world backend development using REST APIs, database integration, and clean architecture.
 
 ---
 
@@ -13,6 +13,9 @@ The project is designed to manage hotel menu items and demonstrates real backend
 - Update menu items (PUT API)
 - Delete menu items (DELETE API)
 - Database integration using MySQL
+- Input validation for correct data handling
+- Exception handling for better error responses
+- Clean architecture (Controller → Service → Repository)
 
 ---
 
@@ -28,7 +31,8 @@ The project is designed to manage hotel menu items and demonstrates real backend
 ## 📌 Project Status
 ✔ CRUD operations implemented  
 ✔ Database integration completed  
-🚀 Further improvements coming (validation, service layer, etc.)
+✔ Validation and exception handling added  
+✔ Clean architecture implemented  
 
 ---
 
@@ -37,18 +41,18 @@ The project is designed to manage hotel menu items and demonstrates real backend
 2. Open in IDE (Eclipse/IntelliJ)  
 3. Configure MySQL in `application.properties`  
 4. Run the main class  
-5. Access APIs on: http://localhost:8080  
+5. Access APIs at: http://localhost:8080  
 
 ---
 
 ## 🔗 API Endpoints
 
 | Method | Endpoint | Description |
-|-------|---------|------------|
-| POST | /menu/add | Add new item |
-| GET | /menu/items | Get all items |
-| GET | /menu/{id} | Get item by ID |
-| PUT | /menu/update/{id} | Update item |
+|--------|---------|------------|
+| POST   | /menu/add | Add new item |
+| GET    | /menu/items | Get all items |
+| GET    | /menu/{id} | Get item by ID |
+| PUT    | /menu/update/{id} | Update item |
 | DELETE | /menu/delete/{id} | Delete item |
 
 ---
@@ -57,7 +61,8 @@ The project is designed to manage hotel menu items and demonstrates real backend
 - Understanding of REST API development  
 - CRUD operations implementation  
 - Database integration using Spring Data JPA  
-- Backend development fundamentals  
+- Validation and exception handling  
+- Clean architecture in backend development  
 
 ---
 
